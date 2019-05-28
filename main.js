@@ -47,7 +47,7 @@ function chiamaFilm(testo){
     }
   });
 };
-
+// chiamo l'api per la ricerca delle serie e gli passo il parametro inserito dall'utente
 function chiamaSerie(testo){
   $.ajax({
     'url':'https://api.themoviedb.org/3/search/tv',
@@ -66,6 +66,8 @@ function chiamaSerie(testo){
   });
 
 };
+
+
 
 function risultato_cerca_film(film){
   for(var i =0; i < film.length; i++){
