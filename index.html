@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Calendario</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://momentjs.com/downloads/moment.js" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <div class="header">
+      <div class="logo">
+        <img src="img/netflix.png" alt="">
+      </div>
+
+      <div class="searchbar">
+        <div class="input_bar">
+          <input id="cerca_film" type="text" name="" value="" placeholder="">
+
+        </div>
+        <div class="bottone_cerca">
+          <button id="bottone_ricerca" type="button" name="button">Cerca</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container_film">
+      <ul class="scheda_film"> </ul>
+
+
+
+    </div>
+
+    <script id="template_netflix" type="text/x-handlebars-template">
+       <li>{{titolo}}</li>
+       <li>{{titolo_originale}}</li>
+       <li>{{lingua}}</li>
+       <li>{{voto}}</li>
+    </script>
+
+    <script src="main.js">
+
+    </script>
+
+  </body>
+</html>
