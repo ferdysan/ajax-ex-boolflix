@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
   <body>
 
@@ -29,8 +30,6 @@
     <div class="container_film">
 
 
-
-
     </div>
 
     <script id="template_netflix" type="text/x-handlebars-template">
@@ -39,7 +38,7 @@
           <li>Titolo: {{titolo}}</li>
           <li>Titolo Originale: {{titolo_originale}}</li>
           <li>Lingua: {{lingua}}</li>
-          <li>Voto: {{voto}}</li>
+          <li id="stelle">Voto: {{voto}}</li>
         </ul>
       </div>
     </script>

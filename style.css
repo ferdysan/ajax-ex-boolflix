@@ -25,3 +25,21 @@
   width: 300px;
   padding: 20px;
 }
+
+.container_film{
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin: 0 auto;
+  flex-wrap: wrap;
+
+}
+
+.locandina{
+  width: 200px;
+  height: 300px;
+  border: 1px solid black;
+  margin: 20px;
+}
