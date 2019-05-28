@@ -8,7 +8,7 @@ $(document).ready(function(){
   // salvo il mio template in una variabile
   var template_html = $('#template_netflix').html();
   // passo al metodo compile di handlebars  il mio template html
-  var template_fucntion = Handlebars.compile(template_html);
+  var template_function = Handlebars.compile(template_html);
 
 
   // var api_base = 'https://api.themoviedb.org/3';
@@ -17,7 +17,7 @@ $(document).ready(function(){
 
     var item_cercato = $('#cerca_film').val();
 
-    console.log(item_cercato);
+
    // carico l'api per la ricerca del film
 
     $.ajax({
@@ -28,8 +28,8 @@ $(document).ready(function(){
         'query' : item_cercato
       },
       'success': function(data){
-        var risultato_cerca = data.response;
-        console.log(risultato_cerca);
+       var film = data.results;
+       risultato_cerca(film);
       },
       'error': function(){
         alert('qualcosa è andato storto');
@@ -38,10 +38,29 @@ $(document).ready(function(){
 
     //reset input
     $('#cerca_film').val('');
-
-
-
-
   });
 
+
+  function risultato_cerca(film){
+    for(var i =0; i < film.length; i++){
+     var risultato_cerca = film[i];
+     console.log(risultato_cerca);
+
+     var titolo = risultato_cerca.title;
+     var titolo_originale = risultato_cerca.original_title;
+     var lingua= risultato_cerca.original_language;
+     var voto = risultato_cerca.vote_average;
+
+     var variabili_finali={
+       'titolo' :titolo,
+       'titolo_originale': titolo_originale,
+       'lingua': lingua,
+       'voto': voto
+     }
+
+     var html_locandina = template_function(variabili_finali);
+
+     $('.container_film').append(html_locandina);
+   }
+  }
 });
