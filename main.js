@@ -88,6 +88,15 @@ function chiamaSerie(){
 
 };
 
+// funzione che controlla se la copertina è presente oppure no se non presente applico un segnaposto
+function img_not_pres(locandina, parametro_cercato){
+  // cerco di fare un controllo per le copertine non esistenti
+   if(! parametro_cercato.poster_path){
+     return locandina = 'img/null.png';
+   }else{
+     return locandina = url_loc + parametro_cercato.poster_path;
+   }
+}
 
 
 // funzioni per l'elaborazione dei risultati delle chiamate Ajax
@@ -100,14 +109,7 @@ function risultato_cerca_film(film){
    var titolo_originale = risultato_cerca.original_title;
    var lingua= risultato_cerca.original_language;
    var voto = risultato_cerca.vote_average;
-   var copertina = risultato_cerca.poster_path;
-
-  // cerco di fare un controllo per le copertine non esistenti
-   if(! risultato_cerca.poster_path){
-     copertina = 'img/null.png';
-   }else{
-     copertina = url_loc + risultato_cerca.poster_path;
-   }
+   var copertina = img_not_pres(copertina, risultato_cerca);
 
    var variabili_finali={
      'titolo' :titolo,
@@ -135,15 +137,7 @@ function risultato_cerca_serie(serie){
      var titolo_originale = risultato_cerca.original_name;
      var lingua= risultato_cerca.original_language;
      var voto = risultato_cerca.vote_average;
-     var copertina = risultato_cerca.poster_path;
-
-    // cerco di fare un controllo per le copertine non esistenti
-     if(! risultato_cerca.poster_path){
-       copertina = 'img/null.png';
-     }else{
-       copertina = url_loc + risultato_cerca.poster_path;
-     }
-
+     var copertina = img_not_pres(copertina, risultato_cerca);
 
      var variabili_finali={
        'titolo' :titolo,
