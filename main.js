@@ -94,6 +94,15 @@ function img_not_pres(locandina, parametro_cercato){
    }
 }
 
+function flags(flag){
+  var lingue= ['it','en','cn','de','fr','jp'];
+  var bandiera='';
+  if(lingue.includes(flag)){
+    bandiera = '<img src="img/'+ flag + '.png">';
+  }
+  return bandiera
+}
+
 
 // funzioni per l'elaborazione dei risultati delle chiamate Ajax
 function risultato_cerca_film(film){
@@ -110,7 +119,7 @@ function risultato_cerca_film(film){
    var variabili_finali={
      'titolo' :titolo,
      'titolo_originale': titolo_originale,
-     'lingua': lingua,
+     'lingua': flags(lingua),
      'voto': numeroStelle,
      'copertina' : copertina
    }
@@ -138,7 +147,7 @@ function risultato_cerca_serie(serie){
      var variabili_finali={
        'titolo' :titolo,
        'titolo_originale': titolo_originale,
-       'lingua': lingua,
+       'lingua': flags(lingua),
        'voto': numeroStelle,
        'copertina' : copertina
      }
