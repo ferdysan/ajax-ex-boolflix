@@ -14,30 +14,42 @@ $(document).ready(function(){
   // passo al metodo compile di handlebars  il mio template html
   var template_function = Handlebars.compile(template_html);
 
-
-
   // var api_base = 'https://api.themoviedb.org/3';
 
   $('#bottone_ricerca').click(function(){
     $('.container_film').empty();
-    var item_cercato = $('#cerca_film').val();
+    chiamaFilm();
 
-    chiamaFilm(item_cercato);
-
-    chiamaSerie(item_cercato);
+    chiamaSerie();
     //reset input
     $('#cerca_film').val('');
   });
 
+  //intercetto il testo invio
+  $("#cerca_film").keypress(function(event) {
+     if (event.which==13) {
+       $('.container_film').empty();
+
+       chiamaFilm();
+
+       chiamaSerie();
+       //reset input
+       $('#cerca_film').val('');
+     }
+  });
 
 // carico l'api per la ricerca del film e creo una funzione
-function chiamaFilm(testo){
+function chiamaFilm(){
+
+  var item_cercato = $('#cerca_film').val();
+
   $.ajax({
     'url':'https://api.themoviedb.org/3/search/movie',
     'method': 'GET',
     'data': {
       'api_key': '08ed7d443629b1584e6666060f8adca9',
-      'query' : testo
+      'query' : item_cercato,
+      'language' : 'it-IT'
     },
     'success': function(data){
      var film = data.results;
@@ -49,13 +61,17 @@ function chiamaFilm(testo){
   });
 };
 // chiamo l'api per la ricerca delle serie e gli passo il parametro inserito dall'utente
-function chiamaSerie(testo){
+function chiamaSerie(){
+
+  var item_cercato = $('#cerca_film').val();
+
   $.ajax({
     'url':'https://api.themoviedb.org/3/search/tv',
     'method': 'GET',
     'data': {
       'api_key': '08ed7d443629b1584e6666060f8adca9',
-      'query' : testo
+      'query' : item_cercato,
+      'language': 'it-IT'
     },
     'success': function(data){
      var serie = data.results;

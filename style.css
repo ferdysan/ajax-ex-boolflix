@@ -42,4 +42,13 @@
   height: 300px;
   border: 1px solid black;
   margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.locandina ul li{
+  list-style-type: none;
+  margin-bottom: 10px;
 }
