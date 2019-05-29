@@ -15,6 +15,7 @@ $(document).ready(function(){
   var template_function = Handlebars.compile(template_html);
 
 
+
   // var api_base = 'https://api.themoviedb.org/3';
 
   $('#bottone_ricerca').click(function(){
@@ -67,8 +68,7 @@ function chiamaSerie(testo){
 
 };
 
-
-
+// funzioni per l'elaborazione dei risultati delle chiamate Ajax
 function risultato_cerca_film(film){
   for(var i =0; i < film.length; i++){
 
@@ -84,8 +84,11 @@ function risultato_cerca_film(film){
      'titolo' :titolo,
      'titolo_originale': titolo_originale,
      'lingua': lingua,
-     'voto': voto
+     'voto': numeroStelle
    }
+
+   var numeroStelle = stelleVoto(voto);
+
    var html_locandina = template_function(variabili_finali);
 
    $('.container_film').append(html_locandina);
@@ -102,17 +105,38 @@ function risultato_cerca_serie(serie){
      var titolo_originale = risultato_cerca.original_name;
      var lingua= risultato_cerca.original_language;
      var voto = risultato_cerca.vote_average;
+     var categoria_cercata = 'SerieTv';
 
      var variabili_finali={
+       'categoria' : categoria_cercata,
        'titolo' :titolo,
        'titolo_originale': titolo_originale,
        'lingua': lingua,
-       'voto': voto
+       'voto': numeroStelle
      }
+
+     var numeroStelle = stelleVoto(voto);
 
      var html_locandina = template_function(variabili_finali);
 
      $('.container_film').append(html_locandina);
    }
   }
+
+  // funzione per l'inserimento delle stelle
+  function stelleVoto(numero){
+    var stelle = Math.ceil(numero)/2;
+    var arrayStelle =[]
+    var star = '<i class="fas fa-star"></i>';
+
+    for (var i = 0; i < stelle; i++) {
+      if(stelle != 0){
+        arrayStelle.push(star)
+      }else{
+        arrayStelle.push(0)
+      }
+    }
+    return arrayStelle.join(' ')
+}
+
 });

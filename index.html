@@ -34,11 +34,12 @@
 
     <script id="template_netflix" type="text/x-handlebars-template">
       <div class="locandina">
+        <div>{{categoria}}</div>
         <ul>
           <li>Titolo: {{titolo}}</li>
           <li>Titolo Originale: {{titolo_originale}}</li>
           <li>Lingua: {{lingua}}</li>
-          <li id="stelle">Voto: {{voto}}</li>
+          <li id="stelle">Rating: {{{voto}}}</li>
         </ul>
       </div>
     </script>
