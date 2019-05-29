@@ -10,8 +10,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: darkgrey;
+  background-color: black;
   padding: 50px;
+  position: fixed;
+  top:0;
 }
 
 
@@ -27,18 +29,18 @@
 }
 
 .container_film{
-  width: 1200px;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   margin: 0 auto;
   flex-wrap: wrap;
-
+  margin-top: 150px;
 }
 
 .locandina{
-  width: 200px;
+  width: 400px;
   height: 300px;
   border: 1px solid black;
   margin: 20px;
@@ -51,4 +53,8 @@
 .locandina ul li{
   list-style-type: none;
   margin-bottom: 10px;
+}
+
+.img_film{
+  margin-right: 10px;
 }

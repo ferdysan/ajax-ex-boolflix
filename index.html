@@ -32,13 +32,17 @@
 
     </div>
 
+    <img src="" alt="">
+
+
     <script id="template_netflix" type="text/x-handlebars-template">
       <div class="locandina">
+        <div class="img_film"><img src="{{copertina}}" alt=""></div>
         <ul>
           <li>Titolo: {{titolo}}</li>
           <li>Titolo Originale: {{titolo_originale}}</li>
           <li>Lingua: {{lingua}}</li>
-          <li id="stelle">Rating: {{{voto}}}</li>
+          <li>Rating: {{{voto}}}</li>
         </ul>
       </div>
     </script>

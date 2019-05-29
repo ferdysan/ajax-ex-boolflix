@@ -16,6 +16,10 @@ $(document).ready(function(){
 
   // var api_base = 'https://api.themoviedb.org/3';
 
+  //url base copertina
+
+ var url_loc = 'https://image.tmdb.org/t/p/w185/';
+
   $('#bottone_ricerca').click(function(){
     $('.container_film').empty();
     chiamaFilm();
@@ -94,13 +98,15 @@ function risultato_cerca_film(film){
    var titolo_originale = risultato_cerca.original_title;
    var lingua= risultato_cerca.original_language;
    var voto = risultato_cerca.vote_average;
+   var copertina = url_loc + risultato_cerca.poster_path;
 
 
    var variabili_finali={
      'titolo' :titolo,
      'titolo_originale': titolo_originale,
      'lingua': lingua,
-     'voto': numeroStelle
+     'voto': numeroStelle,
+     'copertina' : copertina
    }
 
    var numeroStelle = stelleVoto(voto);
@@ -121,7 +127,7 @@ function risultato_cerca_serie(serie){
      var titolo_originale = risultato_cerca.original_name;
      var lingua= risultato_cerca.original_language;
      var voto = risultato_cerca.vote_average;
-     var categoria_cercata = 'SerieTv';
+
 
      var variabili_finali={
        'categoria' : categoria_cercata,
@@ -145,11 +151,11 @@ function risultato_cerca_serie(serie){
     var arrayStelle =[]
     var star = '<i class="fas fa-star"></i>';
 
-    for (var i = 0; i < stelle; i++) {
-      if(stelle != 0){
-        arrayStelle.push(star)
+    for (var i = 0; i < 5; i++) {
+      if(i < stelle){
+        arrayStelle.push('<i class="fas fa-star"></i>')
       }else{
-        arrayStelle.push(0)
+        arrayStelle.push('<i class="far fa-star"></i>')
       }
     }
     return arrayStelle.join(' ')
