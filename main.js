@@ -20,17 +20,13 @@ $(document).ready(function(){
 
   var url_loc = 'https://image.tmdb.org/t/p/w185/';
 
-  $('#bottone_ricerca').click(function(){
-    $('.container_film').empty();
-    chiamaFilm();
-
-    chiamaSerie();
-    //reset input
-    $('#cerca_film').val('');
+  $('.fas.fa-search').click(function(){
+    $('.cerca_film').fadeToggle().toggleClass('active');
+    $('.searchbar').toggleClass('bordo_search');
   });
 
   //intercetto il testo invio
-  $("#cerca_film").keypress(function(event) {
+  $(".cerca_film").keypress(function(event) {
      if (event.which==13) {
        $('.container_film').empty();
 
@@ -38,14 +34,14 @@ $(document).ready(function(){
 
        chiamaSerie();
        //reset input
-       $('#cerca_film').val('');
+       $('.cerca_film').val('');
      }
   });
 
 // carico l'api per la ricerca del film e creo una funzione
 function chiamaFilm(){
 
-  var item_cercato = $('#cerca_film').val();
+  var item_cercato = $('.cerca_film').val();
 
   $.ajax({
     'url':'https://api.themoviedb.org/3/search/movie',
@@ -67,7 +63,7 @@ function chiamaFilm(){
 // chiamo l'api per la ricerca delle serie e gli passo il parametro inserito dall'utente
 function chiamaSerie(){
 
-  var item_cercato = $('#cerca_film').val();
+  var item_cercato = $('.cerca_film').val();
 
   $.ajax({
     'url':'https://api.themoviedb.org/3/search/tv',

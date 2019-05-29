@@ -16,10 +16,38 @@
   top:0;
 }
 
+/* AGGIUNGE UN BORDO ALLA BARRA DI RICERCA QUANDO PREMUTA L'ICONA CERCA SOLUZIONE MIGLIORE */
+.bordo_search{
+ border: 1px solid white;
+}
+
+.cerca_film{
+  display: none;
+  background: black;
+  border: 0;
+  color: white;
+}
+
+.input_bar .fas.fa-search{
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.input_bar{
+  display: flex;
+  margin-right: 20px;
+}
+
+
+.active{
+  display: block;
+}
+
 
 .searchbar{
   display: flex;
-  padding: 20px;
+  padding: 15px;
   justify-content: space-between;
 }
 
