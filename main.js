@@ -6,6 +6,8 @@
 //
 // Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv, stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici) Qui un esempio di chiamata per le serie tv: https://api.themoviedb.org/3/search/tv?api_key=e99307154c6dfb0b4750f6603256716d&la
 
+// Milestone 3: In questa milestone come prima cosa aggiungiamo la copertina del film o della serie al nostro elenco. Ci viene passata dall’API solo la parte finale dell’URL, questo perché poi potremo generare da quella porzione di URL tante dimensioni diverse. Dovremo prendere quindi l’URL base delle immagini di TMDB: https://image.tmdb.org/t/p/​ per poi aggiungere la dimensione che vogliamo generare (troviamo tutte le dimensioni possibili a questo link: https://www.themoviedb.org/talk/53c11d4ec3a3684cf4006400​) per poi aggiungere la parte finale dell’URL passata dall’API. Esempio di URL che torna la copertina di BORIS: https://image.tmdb.org/t/p/w185/s2VDcsMh9ZhjFUxw77uCFDpTuXp.jpg
+
 $(document).ready(function(){
   // preparo il template handlebars
 
@@ -14,11 +16,9 @@ $(document).ready(function(){
   // passo al metodo compile di handlebars  il mio template html
   var template_function = Handlebars.compile(template_html);
 
-  // var api_base = 'https://api.themoviedb.org/3';
-
   //url base copertina
 
- var url_loc = 'https://image.tmdb.org/t/p/w185/';
+  var url_loc = 'https://image.tmdb.org/t/p/w185/';
 
   $('#bottone_ricerca').click(function(){
     $('.container_film').empty();
@@ -88,6 +88,8 @@ function chiamaSerie(){
 
 };
 
+
+
 // funzioni per l'elaborazione dei risultati delle chiamate Ajax
 function risultato_cerca_film(film){
   for(var i =0; i < film.length; i++){
@@ -98,8 +100,14 @@ function risultato_cerca_film(film){
    var titolo_originale = risultato_cerca.original_title;
    var lingua= risultato_cerca.original_language;
    var voto = risultato_cerca.vote_average;
-   var copertina = url_loc + risultato_cerca.poster_path;
+   var copertina = risultato_cerca.poster_path;
 
+  // cerco di fare un controllo per le copertine non esistenti
+   if(! risultato_cerca.poster_path){
+     copertina = 'img/null.png';
+   }else{
+     copertina = url_loc + risultato_cerca.poster_path;
+   }
 
    var variabili_finali={
      'titolo' :titolo,
@@ -130,7 +138,6 @@ function risultato_cerca_serie(serie){
 
 
      var variabili_finali={
-       'categoria' : categoria_cercata,
        'titolo' :titolo,
        'titolo_originale': titolo_originale,
        'lingua': lingua,
@@ -149,7 +156,6 @@ function risultato_cerca_serie(serie){
   function stelleVoto(numero){
     var stelle = Math.ceil(numero)/2;
     var arrayStelle =[]
-    var star = '<i class="fas fa-star"></i>';
 
     for (var i = 0; i < 5; i++) {
       if(i < stelle){
