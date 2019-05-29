@@ -135,13 +135,22 @@ function risultato_cerca_serie(serie){
      var titolo_originale = risultato_cerca.original_name;
      var lingua= risultato_cerca.original_language;
      var voto = risultato_cerca.vote_average;
+     var copertina = risultato_cerca.poster_path;
+
+    // cerco di fare un controllo per le copertine non esistenti
+     if(! risultato_cerca.poster_path){
+       copertina = 'img/null.png';
+     }else{
+       copertina = url_loc + risultato_cerca.poster_path;
+     }
 
 
      var variabili_finali={
        'titolo' :titolo,
        'titolo_originale': titolo_originale,
        'lingua': lingua,
-       'voto': numeroStelle
+       'voto': numeroStelle,
+       'copertina' : copertina
      }
 
      var numeroStelle = stelleVoto(voto);
