@@ -17,7 +17,6 @@ $(document).ready(function(){
   var template_function = Handlebars.compile(template_html);
 
   //url base copertina
-
   var url_loc = 'https://image.tmdb.org/t/p/w185/';
 
   $('.fas.fa-search').click(function(){
@@ -30,25 +29,24 @@ $(document).ready(function(){
      if (event.which==13) {
        $('.container_film').empty();
 
-       chiamaFilm();
+       var item_cercato = $('.cerca_film').val();
 
-       chiamaSerie();
+       chiamaApi(item_cercato);
+
        //reset input
        $('.cerca_film').val('');
      }
   });
 
-// carico l'api per la ricerca del film e creo una funzione
-function chiamaFilm(){
-
-  var item_cercato = $('.cerca_film').val();
+// carico l'api per la ricerca del film e delle serie e creo una funzione
+function chiamaApi(item_corrente){
 
   $.ajax({
     'url':'https://api.themoviedb.org/3/search/movie',
     'method': 'GET',
     'data': {
       'api_key': '08ed7d443629b1584e6666060f8adca9',
-      'query' : item_cercato,
+      'query' : item_corrente,
       'language' : 'it-IT'
     },
     'success': function(data){
@@ -59,18 +57,13 @@ function chiamaFilm(){
       alert('qualcosa è andato storto');
     }
   });
-};
-// chiamo l'api per la ricerca delle serie e gli passo il parametro inserito dall'utente
-function chiamaSerie(){
-
-  var item_cercato = $('.cerca_film').val();
 
   $.ajax({
     'url':'https://api.themoviedb.org/3/search/tv',
     'method': 'GET',
     'data': {
       'api_key': '08ed7d443629b1584e6666060f8adca9',
-      'query' : item_cercato,
+      'query' : item_corrente,
       'language': 'it-IT'
     },
     'success': function(data){
@@ -81,7 +74,6 @@ function chiamaSerie(){
       alert('qualcosa è andato storto');
     }
   });
-
 };
 
 // funzione che controlla se la copertina è presente oppure no se non presente applico un segnaposto
@@ -102,6 +94,7 @@ function flags(flag){
   }
   return bandiera
 }
+
 
 
 // funzioni per l'elaborazione dei risultati delle chiamate Ajax
@@ -130,6 +123,7 @@ function risultato_cerca_film(film){
 
    $('.container_film').append(html_locandina);
  }
+
 }
 
 function risultato_cerca_serie(serie){
@@ -158,6 +152,7 @@ function risultato_cerca_serie(serie){
 
      $('.container_film').append(html_locandina);
    }
+
   }
 
   // funzione per l'inserimento delle stelle
@@ -174,5 +169,10 @@ function risultato_cerca_serie(serie){
     }
     return arrayStelle.join(' ')
 }
+
+    $(document).on('click' , '.icona_info' , function(){
+      $('.box-info').hide();
+      $(this).closest('.box_film').find('.box-info').slideToggle();
+    });
 
 });
