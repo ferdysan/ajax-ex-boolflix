@@ -25,21 +25,29 @@
 
     <div class="container_film">
 
-
     </div>
 
     <img src="" alt="">
 
 
     <script id="template_netflix" type="text/x-handlebars-template">
-      <div class="locandina">
-        <div class="img_film"><img src="{{copertina}}" alt="{{titolo}}"></div>
-        <ul>
-          <li>Titolo: {{titolo}}</li>
-          <li>Titolo Originale: {{titolo_originale}}</li>
-          <li>Lingua: {{{lingua}}}</li>
-          <li>Rating: {{{voto}}}</li>
-        </ul>
+
+
+
+     <div class="box_film">
+         <div class="locandina">
+           <div class="img_film"><img src="{{copertina}}" alt="">
+            <span class="icona_info"><i class="fas fa-chevron-down fa-2x"></i></span>
+           </div>
+         </div>
+        <div class="box-info">
+          <ul>
+            <li>Titolo: {{titolo}}</li>
+            <li>Titolo Originale: {{titolo_originale}}</li>
+            <li>Lingua: {{{lingua}}}</li>
+            <li>Rating: {{{voto}}}</li>
+          </ul>
+        </div>
       </div>
     </script>
 
